@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: drop-unique-roleid-on-users
+      author: ai
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: users
+        - or:
+            - uniqueConstraintExists:
+                constraintName: ukkrvotbtiqhudlkamvlpaqus0t
+                tableName: users
+      changes:
+        - dropUniqueConstraint:
+            constraintName: ukkrvotbtiqhudlkamvlpaqus0t
+            tableName: users
